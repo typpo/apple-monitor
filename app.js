@@ -3,7 +3,6 @@ var request = require('request')
   , Q = require('q')
   , querystring = require('querystring')
 
-
 var models_16g = {
   'ME341LL/A': 'iphone 5s space gray verizon 16gb',
   'ME343LL/A': 'iphone 5s gold verizon 16gb',
@@ -11,7 +10,6 @@ var models_16g = {
 };
 
 var ZIPCODE = 94043;
-
 
 function check(url) {
   var deferred = Q.defer();
@@ -34,7 +32,7 @@ function checkstore(store, model, desc) {
       uri:'http://textbelt.com/text',
       headers:{'content-type': 'application/x-www-form-urlencoded'},
       body: querystring.stringify({
-        number: '9147727429',
+        number: '1234567890',
         message: msg
       }, function(err, resp, body) {
         console.log(arguments);
@@ -54,3 +52,4 @@ _.each(models_16g, function(desc, model) {
     console.log('search failed');
   });
 });
+
