@@ -10,6 +10,7 @@ var models_16g = {
 };
 
 var ZIPCODE = 94043;
+var PHONE_NUMBER = null;   // '5555555555'
 
 function check(url) {
   var deferred = Q.defer();
@@ -27,27 +28,34 @@ function checkstore(store, model, desc) {
   if (store.partsAvailability[model].pickupDisplay !== 'unavailable') {
     var msg = 'phone available: ' +  desc + ' @ ' + store.storeDisplayName;
     console.info(msg);
-    /*
+    return true;
+  }
+  return false;
+}
+
+function checkStores(stores, model, desc) {
+  var any = _.some(stores, function() {
+    return checkStore(store, mode, desc);
+  });
+  
+  if (any && PHONE_NUMBER) {
     request.post({
       uri:'http://textbelt.com/text',
       headers:{'content-type': 'application/x-www-form-urlencoded'},
       body: querystring.stringify({
-        number: '1234567890',
-        message: msg
+        number: ''+PHONE_NUMBER,
+        message: desc + ' is available in your area.',
       }, function(err, resp, body) {
         console.log(arguments);
       })
     });
-    */
   }
 }
 
 _.each(models_16g, function(desc, model) {
   var modeluri = encodeURIComponent(model);
   check('http://store.apple.com/us/retail/availabilitySearch?parts.0=' + modeluri + '&zip=' + ZIPCODE).then(function(stores) {
-    stores.map(function(store) {
-      return checkstore(store, model, desc);
-    });
+    checkStores(stores, model, desc);
   }).fail(function(err) {
     console.log('search failed');
   });
