@@ -15,11 +15,16 @@ With this script, you can see shipments come in realtime.  It's scary how quickl
 
 `node apple.js zipcode [phone_number]`
 
-eg.
+## Examples
 
 `node apple.js 94043` to monitor stores within driving distance from Mountain View.
 
 `watch -n 30 "node apple.js 94043"` to check every 30 seconds.
+
+Output:
+
+    $ node apple.js 94043
+    >> phone available: iphone 5s silver verizon 16gb @ Apple Store, Palo Alto
 
 ## MIT License
 
