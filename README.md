@@ -1,7 +1,7 @@
 Apple Inventory Monitor
 =============
 
-Apple is [shutting down](http://appleinsider.com/articles/13/11/06/apple-shuts-down-web-based-product-inventory-tracking-tool) inventory monitoring sites.  Here is a dead-simple customizable open-source solution.
+Apple is [shutting down](http://appleinsider.com/articles/13/11/06/apple-shuts-down-web-based-product-inventory-tracking-tool) inventory monitoring sites.  Here is some simple customizable code that will do it for you.
 
 I made this script as a way to gift a new iPhone 5S for a friend.  Although iPhones were in very high demand, I got hers in less than a day.
 
