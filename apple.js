@@ -66,6 +66,9 @@ function checkStores(stores, model, desc) {
           message: desc + ' is available at ' + avail_stores[0].storeName,
         }
       }, function(err, resp, body) {
+        if (err) {
+          console.error('Error texting:', err);
+        }
       });
   }
 }
