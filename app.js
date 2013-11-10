@@ -18,13 +18,14 @@ function check(url) {
     obj = JSON.parse(body);
     if (!obj.body || !obj.body.success || !obj.body.stores) {
       deferred.reject();
+      return;
     }
     deferred.resolve(obj.body.stores);
-  })
+  });
   return deferred.promise;
 }
 
-function checkstore(store, model, desc) {
+function checkStore(store, model, desc) {
   if (store.partsAvailability[model].pickupDisplay !== 'unavailable') {
     var msg = 'phone available: ' +  desc + ' @ ' + store.storeDisplayName;
     console.info(msg);
@@ -34,10 +35,10 @@ function checkstore(store, model, desc) {
 }
 
 function checkStores(stores, model, desc) {
-  var any = _.some(stores, function() {
-    return checkStore(store, mode, desc);
+  var any = _.some(stores, function(store) {
+    return checkStore(store, model, desc);
   });
-  
+
   if (any && PHONE_NUMBER) {
     request.post({
       uri:'http://textbelt.com/text',
@@ -54,10 +55,12 @@ function checkStores(stores, model, desc) {
 
 _.each(models_16g, function(desc, model) {
   var modeluri = encodeURIComponent(model);
-  check('http://store.apple.com/us/retail/availabilitySearch?parts.0=' + modeluri + '&zip=' + ZIPCODE).then(function(stores) {
+  var url = 'http://store.apple.com/us/retail/availabilitySearch?parts.0=' + modeluri + '&zip=' + ZIPCODE;
+  check(url).then(function(stores) {
     checkStores(stores, model, desc);
   }).fail(function(err) {
     console.log('search failed');
+    console.error(err);
   });
 });
 
