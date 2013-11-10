@@ -19,4 +19,4 @@ eg.
 
 `node apple.js 94043` to monitor stores within driving distance from Mountain View.
 
-`watch -n 30 node apple.js 94043` to check every 30 seconds.
+`watch -n 30 "node apple.js 94043"` to check every 30 seconds.
