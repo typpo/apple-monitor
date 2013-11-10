@@ -7,13 +7,9 @@ I made this script as a way to gift a new iPhone 5S for a friend.  Although iPho
 
 With this script, you can see shipments come in realtime.  It's scary how quickly the phones get snapped up.
 
-## Setup
+## Setup and Usage
 
-`npm install` to install dependencies.
-
-## Usage
-
-`node apple.js zipcode [phone_number]`
+`npm install` to install dependencies.  Then, `node apple.js zipcode [phone_number]`.
 
 ## Examples
 
