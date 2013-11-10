@@ -42,22 +42,19 @@ function appleSearch(model) {
   return deferred.promise;
 }
 
-function checkStore(store, model, desc) {
-  if (store.partsAvailability[model].pickupDisplay !== 'unavailable') {
-    var msg = 'phone available: ' +  desc + ' @ ' + store.storeDisplayName;
-    console.info(msg);
-    return true;
-  }
-  return false;
+function hasAvailability(store, model, desc) {
+  return store.partsAvailability[model].pickupDisplay !== 'unavailable';
 }
 
 _.each(models_16g, function(desc, model) {
   appleSearch(model).then(function(stores) {
     var avail_stores  = [];
     var any = _.some(stores, function(store) {
-      var avail = checkStore(store, model, desc);
+      var avail = hasAvailability(store, model, desc);
       if (avail) {
         avail_stores.push(store);
+        var msg = 'phone available: ' +  desc + ' @ ' + store.storeDisplayName;
+        console.info(msg);
       }
       return avail;
     });
