@@ -9,6 +9,8 @@ var request = require('request')
   , _ = require('underscore')
   , Q = require('q')
 
+/********************************* CONFIGURATION ******************************/
+
 // Set to false if you're ok with having the phone shipped.
 var PICKUP_ONLY = true;
 
@@ -19,6 +21,8 @@ var models = {
   'MG542LL/A': 'iphone 6 gray 4.7" tmobile 16gb',
   // Add products you're interested in.
 };
+
+/******************************************************************************/
 
 if (process.argv.length < 3) {
   console.log('usage: node apple.js zipcode');
