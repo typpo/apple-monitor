@@ -1,11 +1,7 @@
 Apple Inventory Monitor
 =============
 
-Apple is [shutting down](http://appleinsider.com/articles/13/11/06/apple-shuts-down-web-based-product-inventory-tracking-tool) inventory monitoring sites.  Here is some simple customizable code that will do it for you.
-
-I made this script because I wanted to get an iPhone 5S for a friend.  Although iPhones were in very high demand, I got hers in less than a day.
-
-With this script, you can see shipments come in realtime.  It's scary how quickly the phones get snapped up.
+Here's some simple customizable code that will let you monitor realtime Apple inventory in your area.  Watch for alerts in your console or have it text you when phones become available.
 
 ## Setup and Usage
 
