@@ -9,10 +9,14 @@ var request = require('request')
   , _ = require('underscore')
   , Q = require('q')
 
+// Set to false if you're ok with having the phone shipped.
+var PICKUP_ONLY = true;
+
+// iPhone 6 model numbers http://leimobile.com/iphone-6-model-numbers/
 var models = {
-  'ME341LL/A': 'iphone 5s space gray verizon 16gb',
-  'ME343LL/A': 'iphone 5s gold verizon 16gb',
-  'ME342LL/A': 'iphone 5s silver verizon 16gb',
+  'MG552LL/A': 'iphone 6 silver 4.7" tmobile 16gb',
+  'MG562LL/A': 'iphone 6 gold 4.7" tmobile 16gb',
+  'MG542LL/A': 'iphone 6 gray 4.7" tmobile 16gb',
   // Add products you're interested in.
 };
 
@@ -43,7 +47,12 @@ function appleSearch(model) {
 }
 
 function hasAvailability(store, model, desc) {
-  return store.partsAvailability[model].pickupDisplay !== 'unavailable';
+  var modelinfo = store.partsAvailability[model];
+  var ret = modelinfo.pickupDisplay !== 'unavailable';
+  if (PICKUP_ONLY && modelinfo.pickupSearchQuote === 'Unavailable for Pickup') {
+    return false;
+  }
+  return ret;
 }
 
 _.each(models, function(desc, model) {
