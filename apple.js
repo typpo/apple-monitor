@@ -9,7 +9,7 @@ var request = require('request')
   , _ = require('underscore')
   , Q = require('q')
 
-var models_16g = {
+var models = {
   'ME341LL/A': 'iphone 5s space gray verizon 16gb',
   'ME343LL/A': 'iphone 5s gold verizon 16gb',
   'ME342LL/A': 'iphone 5s silver verizon 16gb',
@@ -46,7 +46,7 @@ function hasAvailability(store, model, desc) {
   return store.partsAvailability[model].pickupDisplay !== 'unavailable';
 }
 
-_.each(models_16g, function(desc, model) {
+_.each(models, function(desc, model) {
   appleSearch(model).then(function(stores) {
     var avail_stores  = [];
     var any = _.some(stores, function(store) {
